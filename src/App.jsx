@@ -9,14 +9,16 @@ import Profile from "./pages/Profile";
 import CreatePost from "./pages/CreatePost";
 import { useUser } from "@clerk/clerk-react";
 import Layout from "./pages/Layout";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   const { isSignedIn } = useUser();
   return (
     <>
+      <Toaster />
       <Routes>
         <Route path="/" element={!isSignedIn ? <Login /> : <Layout />}>
-          <Route path="index" element={<Feed />} />
+          <Route index element={<Feed />} />
           <Route path="messages" element={<Messages />} />
           <Route path="messages/:userId" element={<ChatBox />} />
           <Route path="connections" element={<Connection />} />
